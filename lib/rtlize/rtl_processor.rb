@@ -7,7 +7,9 @@ module Rtlize
     end
 
     def render(context, locals, &block)
-      if context.pathname.basename.to_s.match(/\.rtl\.css/i)
+      allowed_extensions = ['sass', 'css', 'scss']
+      extension = context.pathname.basename.to_s.split('.').length > 1 ? context.pathname.basename.to_s.split('.')[-1] : nil
+      if extension && allowed_extensions.include?(extension) && context.pathname.basename.to_s.match(/\.rtl/i)
         Rtlize::RTLizer.transform(data)
       else
         data
