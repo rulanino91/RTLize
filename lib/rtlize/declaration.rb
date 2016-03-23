@@ -116,7 +116,7 @@ module Rtlize
       def quad(v)
         # 1px 2px 3px 4px => 1px 4px 3px 2px
         m = v.split(/\s+/)
-        m.length == 4 ? [m[0], m[3], m[2], m[1]].join(' ') : v
+        m.length == 4 && !v.include?('rgba(') ? [m[0], m[3], m[2], m[1]].join(' ') : v
       end
 
       def quad_radius(v)
