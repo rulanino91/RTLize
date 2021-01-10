@@ -13,7 +13,7 @@ module Rtlize
     end
 
     def self.run(filename, source, context)
-      allowed_extensions = ['sass', 'css', 'scss']
+      allowed_extensions = ['sass', 'css', 'scss', 'erb']
       extension = context.pathname.basename.to_s.split('.').length > 1 ? context.pathname.basename.to_s.split('.')[-1] : nil
       if extension && allowed_extensions.include?(extension) && context.pathname.basename.to_s.match(/\.rtl/i)
         Rtlize::RTLizer.transform(source)
